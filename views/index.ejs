@@ -1,0 +1,41 @@
+<h1 class="title">Expense Tracker</h1>
+<div class="form">
+    <form id="expense-form" action="/expenses" method="POST">
+        <label for="expense">Amount:</label>
+        <input type="number" id="expense" name="amount" required>
+
+        <label for="desc">Description:</label>
+        <input type="text" id="desc" name="description" required>
+
+        <label for="category">Category:</label>
+        <select id="category" name="category">
+            <option value="Fuel">Fuel</option>
+            <option value="Electricity">Electricity</option>
+            <option value="Food">Food</option>
+            <option value="Movie">Movie</option>
+        </select>
+
+        <button type="submit" id="submit">Add Expense</button>
+    </form>
+</div>
+
+<ul id="expense-list">
+    <% expenses.forEach(expense => { %>
+        <li class="list-group-item">
+            <%= expense.amount %> - <%= expense.description %> - <%= expense.category %> &nbsp;
+            <form action="/expenses/delete/<%= expense.id %>" method="POST" style="display:inline;">
+                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+            </form>
+            &nbsp;
+            <form action="/expenses/edit/<%= expense.id %>" method="POST" style="display:inline;">
+                <button type="submit" class="btn btn-warning btn-sm">Edit</button>
+                <input type="hidden" name="id" value="<%= expense.id %>">
+                <input type="hidden" name="amount" value="<%= expense.amount %>">
+                <input type="hidden" name="description" value="<%= expense.description %>">
+                <input type="hidden" name="category" value="<%= expense.category %>">
+            </form>
+        </li>
+    <% }); %>
+</ul>
+
+<script src="Expense_Tracker.js"></script>
