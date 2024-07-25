@@ -1,5 +1,4 @@
-// models/expense.js
-const { DataTypes } = require('sequelize');
+const DataTypes = require('sequelize');
 const sequelize = require('../util/database');
 
 const Expense = sequelize.define('Expense', {
